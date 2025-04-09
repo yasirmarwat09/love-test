@@ -1,0 +1,218 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffcad4;
+  transition: all 1s ease;
+  overflow: hidden;
+  /* Corrected heart shape in background */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,30 C27,5 0,18 0,50 C0,65 25,85 50,95 C75,85 100,65 100,50 C100,18 73,5 50,30 Z" fill="%23ffffff40"/></svg>');
+  background-size: 100px 100px;
+}
+
+.love-bg {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+  /* Corrected heart shape in love background */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,30 C27,5 0,18 0,50 C0,65 25,85 50,95 C75,85 100,65 100,50 C100,18 73,5 50,30 Z" fill="%23ffffff20"/></svg>'),
+    linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+  background-size: 200px 200px, cover;
+}
+
+.container {
+  text-align: center;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  width: 500px;
+  position: relative;
+  z-index: 10;
+  transition: all 0.5s ease;
+  border: 2px solid #ffd6e0;
+}
+
+.success-container {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 35px rgba(255, 105, 180, 0.3);
+  transform: scale(1.05);
+  border: 3px solid #ff8fab;
+}
+
+.gif-container {
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+  border: 2px solid #ffeff4;
+}
+
+.gif-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* This prevents interaction with the iframe */
+}
+
+.question {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #ff4d6d;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(255, 77, 109, 0.1);
+  transition: all 0.5s ease;
+}
+
+.love-question {
+  font-size: 2.4rem;
+  color: #ff3366;
+  text-shadow: 2px 2px 4px rgba(255, 51, 102, 0.2);
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.btn {
+  padding: 0.85rem 2.8rem;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.yes-btn {
+  background: linear-gradient(145deg, #4caf50, #43a047);
+  color: white;
+}
+
+.no-btn {
+  background: linear-gradient(145deg, #f44336, #e53935);
+  color: white;
+  position: relative;
+}
+
+/* Hearts */
+.heart {
+  position: absolute;
+  background-size: contain;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Corrected floating heart SVGs */
+.heart1 {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff4d6d"><path d="M12,21 C10.8,19.9 9.6,18.9 8.5,17.9 C5.6,15.4 2,12.4 2,8.5 C2,5.5 4.4,3 7.5,3 C9.2,3 10.9,3.8 12,5.1 C13.1,3.8 14.8,3 16.5,3 C19.6,3 22,5.5 22,8.5 C22,12.4 18.4,15.4 15.5,17.9 C14.4,18.9 13.2,19.9 12,21 Z"/></svg>')
+    no-repeat center center;
+}
+
+.heart2 {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff6b8b"><path d="M12,21 C10.8,19.9 9.6,18.9 8.5,17.9 C5.6,15.4 2,12.4 2,8.5 C2,5.5 4.4,3 7.5,3 C9.2,3 10.9,3.8 12,5.1 C13.1,3.8 14.8,3 16.5,3 C19.6,3 22,5.5 22,8.5 C22,12.4 18.4,15.4 15.5,17.9 C14.4,18.9 13.2,19.9 12,21 Z"/></svg>')
+    no-repeat center center;
+}
+
+.heart3 {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff91a4"><path d="M12,21 C10.8,19.9 9.6,18.9 8.5,17.9 C5.6,15.4 2,12.4 2,8.5 C2,5.5 4.4,3 7.5,3 C9.2,3 10.9,3.8 12,5.1 C13.1,3.8 14.8,3 16.5,3 C19.6,3 22,5.5 22,8.5 C22,12.4 18.4,15.4 15.5,17.9 C14.4,18.9 13.2,19.9 12,21 Z"/></svg>')
+    no-repeat center center;
+}
+
+/* Hearts animation */
+@keyframes float-left {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(-50px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-right {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(50px) rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-center {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .question {
+    font-size: 1.7rem;
+  }
+
+  .love-question {
+    font-size: 1.9rem;
+  }
+
+  .buttons {
+    gap: 1rem;
+  }
+
+  .btn {
+    padding: 0.7rem 2.2rem;
+    font-size: 1.1rem;
+  }
+}
