@@ -107,44 +107,28 @@ function createHeart() {
 
 // Play romantic sound - with error handling
 function playRomanticSound() {
-  try {
-    const audio = new Audio("assets/sound.mp3");
-    audio.volume = 0.7; // Slightly lower volume
+  const audio = new Audio("assets/sound.mp3");
+  audio.volume = 1;
 
-    // Only proceed if audio can be played
-    audio.addEventListener("canplaythrough", () => {
-      try {
-        audio.currentTime = 4;
-        const playPromise = audio.play();
+  // Play once metadata is ready and we can jump to time
+  audio.addEventListener("loadedmetadata", () => {
+    audio.currentTime = 4;
+    audio.play();
 
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              // Playback started successfully
-              setTimeout(() => {
-                audio.pause();
-                audio.currentTime = 0;
-              }, 13000); // Play for 13 seconds after starting at 4s
-            })
-            .catch((e) => {
-              console.log("Playback was prevented:", e);
-              // Many mobile browsers prevent autoplay
-            });
-        }
-      } catch (err) {
-        console.log("Audio playback error:", err);
-      }
-    });
-
-    // Set a timeout in case the audio never loads
     setTimeout(() => {
-      if (audio.paused) {
-        console.log("Audio failed to start playing within timeout");
-      }
-    }, 3000);
-  } catch (e) {
-    console.log("Audio couldn't be initialized:", e);
-  }
+      audio.pause();
+      audio.currentTime = 0;
+    }, 13000); // Play for 13 seconds
+  });
+
+  // Fallback in case metadata isn't triggered
+  setTimeout(() => {
+    try {
+      audio.play();
+    } catch (e) {
+      console.log("Playback failed:", e);
+    }
+  }, 100);
 }
 
 // Initialize - set initial positions for mobile
